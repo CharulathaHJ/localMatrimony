@@ -1,8 +1,24 @@
 // import { getPosts, getPost, createPost, updatePost, likePost, deletePost } from '../controllers/posts.js';
 const express = require('express');
 const mongoose = require('mongoose');
-const PostMessage = require('../models/postMessage.js');
+// const PostMessage = require('../models/postMessage.js');
 const router = express.Router();
+
+const postSchema = mongoose.Schema({
+    name: String,
+    dob: Date,
+    // age: Number,
+    gender: String,
+    // job: String,
+    caste: String,
+    // subcaste:String,
+    // place:String,
+    // height:Number,
+    // weight:Number,
+    pic:String
+})
+
+let PostMessage = mongoose.model('PostMessage', postSchema);
 
 // router.get('/', (req,res)=>{
 //     res.send([]);
@@ -21,7 +37,7 @@ router.post('/',  async (req, res) => {
     const { name, dob, gender, caste, pic } = req.body;
 
     const newPostMessage = new PostMessage({ name, dob, gender, caste, pic })
-
+debugger
     try {
         await newPostMessage.save();
 
